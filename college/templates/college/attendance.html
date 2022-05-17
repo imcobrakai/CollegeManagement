@@ -1,0 +1,29 @@
+{% extends "college/layout.html" %}
+{% block title %}Attendance{% endblock %}
+{% load operations %}
+{% block main %}
+<h2>Students</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">Name</th>
+                <th class="text-start">Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in student_list %}
+            <tr>
+                <td class="text-start">{{ student.name }}</td>
+                <td class="text-start"> <input type="checkbox" name="{{ student.name }}" value="yes" id=""> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <input type="submit">
+</form>
+    
+
+
+{% endblock %}

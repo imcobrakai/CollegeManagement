@@ -1,0 +1,32 @@
+{% extends "college/layout.html" %}
+{% block title %}Admin{% endblock %}
+{% load operations %}
+{% block main %}
+<h2>Student Detail</h2>
+      <table class="table table-bordered border-dark">
+        <tr>
+          <th>Name</th>
+          <td>{{ student.name }}</td>
+        </tr>
+        <tr>
+          <th>UserName</th>
+          <td>{{ student.username }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ student.email }}</td>
+        </tr>
+        <tr>
+          <th>PRN</th>
+          <td>{{ student.prn }}</td>
+        </tr>
+        <tr>
+          <th>Attendance</th>
+          <td>{{ student.lectures_attended|divide:student.total_lectures }}</td>
+        </tr>
+        <tr>
+          <th>Branch</th>
+          <td>{{ student.branch }}</td>
+        </tr>
+      </table>
+{% endblock %}

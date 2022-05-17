@@ -1,0 +1,166 @@
+{% extends "college/layout.html" %}
+{% block title %}Admin
+
+
+{% endblock %}
+{% load operations %}
+{% block main %}
+<style>
+    table a {
+        background-color: rgb(239, 239, 239);
+    }
+    table a:hover, .hovered:hover {
+        background-color: rgb(229, 229, 229);
+    }
+</style>
+    <h2>Teachers</h2>
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">Name</th>
+                <th class="text-start">UserName</th>
+                <th class="text-start">Email</th>
+                <th class="text-end">Branch</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in object_list %}
+                <tr>
+                    <td class="text-start">{{ teacher.name }}</td>
+                    <td class="text-start">{{ teacher.username }}</td>
+                    <td class="text-start">{{ teacher.email }}</td>
+                    <td class="text-end">{{ teacher.branch }}</td>
+                    <td class="text-end">
+                        <a href="{% url 'college:teacherupdate' teacher.id %}">Update</a>
+                        <form action="{% url 'college:teacherdelete' %}"
+                              method="post"
+                              style="display:inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ teacher.id }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">Teacher Count:</td>
+                <td class="border-0 text-start">{{ teacher_count }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <h2>Students</h2>
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">Name</th>
+                <th class="text-start">UserName</th>
+                <th class="text-start">Email</th>
+                <th class="text-start">Prn</th>
+                <th class="text-end">Branch</th>
+                <th class="text-end">Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in student_list %}
+                <tr>
+                    <td class="text-start">{{ student.name }}</td>
+                    <td class="text-start">{{ student.username }}</td>
+                    <td class="text-start">{{ student.email }}</td>
+                    <td class="text-start">{{ student.prn }}</td>
+                    <td class="text-end">{{ student.branch }}</td>
+                    <td class="text-end">{{ student.lectures_attended|divide:student.total_lectures }}</td>
+                    <td class="text-end">
+                        <a href="{% url 'college:studentupdate' student.id %}">Update</a>
+                        <form action="{% url 'college:studentdelete' %}"
+                              method="post"
+                              style="display:inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ student.id }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="6">Student Count:</td>
+                <td class="border-0 text-start">{{ student_count }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <h2>Branches</h2>
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">Name</th>
+                <th class="text-start">
+                    Students
+                </th>
+                <th class="text-end">
+                    Teachers
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for branch in branch_list %}
+                <tr>
+                    <td class="text-start">
+                        {{ branch.branch.name }}
+                    </td>
+                    <td class="text-start">
+                        {{ branch.student_count }}
+                    </td>
+                    <td class="text-end">
+                        {{ branch.teacher_count }}
+                    </td>
+                    <td class="text-end">
+                        <a href="{% url 'college:branchupdate' branch.branch.id %}">Update</a>
+                        <form action="{% url 'college:branchdelete' %}"
+                              method="post"
+                              style="display:inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ branch.branch.id }}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">
+                    Branch Count:
+                </td>
+                <td class="border-0 text-start">
+                    {{ branch_count }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <script>
+        let anchors = document.querySelectorAll("table a")
+        for (let i = 0; i < anchors.length; i++) {
+            anchors[i].classList.add("px-2")
+            anchors[i].classList.add("text-decoration-none")
+            anchors[i].classList.add("text-decoration-none")
+            anchors[i].classList.add("text-dark")
+            anchors[i].classList.add("border")
+            anchors[i].classList.add("rounded")
+            anchors[i].classList.add("border-dark")
+        }
+        let submits = document.querySelectorAll("input")
+        for (let i = 0; i < submits.length; i++) {
+            if (submits[i].type == "submit") {
+                submits[i].classList.add("hovered")
+                submits[i].classList.add("rounded")
+                submits[i].classList.add("border")
+                submits[i].classList.add("border-dark")
+                
+            }
+
+        }
+    </script>
+{% endblock %}

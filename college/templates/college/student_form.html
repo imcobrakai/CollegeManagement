@@ -1,0 +1,56 @@
+{% extends "college/layout.html" %}
+{% block title %}Register{% endblock %}
+{% block main %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.username }}
+            {{ form.errors.username }}
+        </div>
+        <div class="mb-3">
+            {{ form.name }}
+            {{ form.errors.name }}
+        </div>
+        <div class="mb-3">
+            {{ form.email }}
+            {{ form.errors.email }}
+        </div>
+        <div class="mb-3">
+            {{ form.prn }}
+            {{ form.errors.prn }}
+        </div>
+        
+            <div class="mb-3 ">
+                {{ form.password }}
+                {{ form.errors.password }}
+            </div>
+            <div class="mb-3 ">
+                {{ form.branch }}
+                {{ form.errors.branch }}
+            </div> 
+            {% comment %} {{ form.errors|typededo }} {% endcomment %}
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+        <script>
+        let inputs = document.getElementsByTagName("input");
+        inputs[1].focus();
+        for (let i = 1; i < inputs.length; i++) {
+            inputs[i].classList.add("form-control")
+            inputs[i].classList.add("mx-auto")
+            inputs[i].classList.add("w-auto")
+        }
+		inputs[1].placeholder = "Username";
+		inputs[2].placeholder = "Name";
+		inputs[3].placeholder = "Email";
+		inputs[4].placeholder = "Prn";
+		inputs[5].placeholder = "Password";
+        let select1 = document.getElementsByTagName("select");
+        let option1 = document.createElement("option");
+        var t = document.createTextNode("Branch");
+        option1.appendChild(t);
+        option1.defaultSelected = true;
+        option1.disabled = true;
+        select1[0].appendChild(option1);
+        </script> 
+       
+    {% endblock %}

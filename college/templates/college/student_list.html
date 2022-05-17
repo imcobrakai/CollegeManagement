@@ -1,0 +1,35 @@
+{% extends "college/layout.html" %}
+{% block title %}Admin{% endblock %}
+{% load operations %}
+{% block main %}
+
+<h2>Students</h2>
+<table class="table tablestriped">
+    <thead>
+        <tr>
+            <th class="text-start">Name</th>
+            <th class="text-start">UserName</th>
+            <th class="text-start">Prn</th>
+            <th class="text-end">Branch</th>
+            <th class="text-end">Attendance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in student_list %}
+        <tr>
+            <td class="text-start">{{ student.name }}</td>
+            <td class="text-start">{{ student.username }}</td>
+            <td class="text-start">{{ student.prn }}</td>
+            <td class="text-end">{{ student.branch }}</td>
+            <td class="text-end"> {{ student.lectures_attended|divide:student.total_lectures }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="5">Student Count:</td>
+                <td class="border-0 ">{{ student_list|length }}</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

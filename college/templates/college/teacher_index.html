@@ -1,0 +1,54 @@
+{% extends "college/layout.html" %}
+{% block title %}Teacher Detail{% endblock %}
+{% load operations %}
+{% block main %}
+<h2>Teacher Detail</h2>
+<table class="table table-bordered border-dark">
+    <tr>
+      <th>Name</th>
+      <td>{{ teacher.name }}</td>
+    </tr>
+    <tr>
+      <th>UserName</th>
+      <td>{{ teacher.username }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ teacher.email }}</td>
+    </tr>
+    <tr>
+      <th>Branch</th>
+      <td>{{ teacher.branch }}</td>
+    </tr>
+  </table>
+  <style>
+    .tags a {
+        background-color: rgb(239, 239, 239);
+    }
+    .tags a:hover {
+        background-color: rgb(229, 229, 229);
+    }
+    
+  </style>
+  <div class="tags my-5">
+    <div class="">
+      <a href="{% url 'college:attendance' %}">Take Attendance</a>
+    </div>
+    <div class="my-3">
+      <a href="{% url 'college:studentlist' %}">View Students</a>
+    </div>
+    </div>
+    <script>
+        let anchors = document.querySelectorAll(".tags a")
+        console.log(anchors)
+        for (let i = 0; i < anchors.length; i++) {
+            anchors[i].classList.add("px-2")
+            anchors[i].classList.add("text-decoration-none")
+            anchors[i].classList.add("text-decoration-none")
+            anchors[i].classList.add("text-dark")
+            anchors[i].classList.add("border")
+            anchors[i].classList.add("rounded")
+            anchors[i].classList.add("border-dark")
+        }
+    </script>
+{% endblock %}
