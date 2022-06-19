@@ -35,6 +35,9 @@
                     {% if user.is_superuser %}
                         <ul class="navbar-nav me-auto mt-2">
                             <li class="nav-item">
+                                <a class="nav-link" href="{% url 'college:adminview' %}">Index</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{% url 'accounts:createstudent' %}">Create Student</a>
                             </li>
                             <li class="nav-item">
@@ -43,14 +46,29 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'accounts:createbranch' %}">Create Branch</a>
                             </li>
-                            
                         </ul>
-                        
-                     
                     {% endif %}
                     
                     
                     {% if user.is_authenticated %}
+                    
+                    {% load check %}
+
+                    {% if user|isStudent %}
+                    <ul class="navbar-nav me-auto mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'college:studentview' %}">Index</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% if user|isTeacher %}
+                    <ul class="navbar-nav me-auto mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'college:teacherview' %}">Index</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                        
                     <ul class="navbar-nav ms-auto mt-2">
 
                         <li class="nav-item">
@@ -91,11 +109,11 @@
         {% endif %} {% endcomment %}
 
             
-            {% block bgimage %}
+            
             <main class="container py-5 text-center">
                 {% block main %}{% endblock %}
             </main>
-            {% endblock bgimage %}
+           
             
     </body>
 </html>

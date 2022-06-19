@@ -54,23 +54,18 @@ class AdminView(SuperUserRequiredMixin, ListView):
         return context
 
 class StudentView(StudentLoginRequiredMixin, DetailView):
-    model = Student
-    template_name = "college/student_index.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    
+    def get(self, request):
+        context = dict()
         context["student"] = Student.objects.get(username = self.request.user) 
-        return context
+        return render(request, "college/student_index.html", context)
 
 class TeacherView(TeacherLoginRequiredMixin, DetailView):
-    model = Teacher
-    template_name = "college/teacher_index.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get(self, request):
+        context = dict()
         context["teacher"] = Teacher.objects.get(username = self.request.user) 
-        return context
+        return render(request, "college/teacher_index.html", context)
     
-    
-
 class AttendanceView(TeacherLoginRequiredMixin, View):
     def get(self, request):
         branch = (Teacher.objects.values("branch").get(username = request.user))["branch"]
@@ -90,7 +85,7 @@ class AttendanceView(TeacherLoginRequiredMixin, View):
                 student.lectures_attended += 1
             student.total_lectures += 1
             student.save()
-        return redirect(reverse_lazy("college:teacherview", kwargs={'pk': Teacher.objects.values('id').get(username = request.user)['id']}))
+        return redirect(reverse_lazy("college:teacherview"))
 
 class StudentList(TeacherLoginRequiredMixin, ListView):
     model = Student

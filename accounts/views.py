@@ -30,7 +30,7 @@ class TeacherLogin(View):
 
         if user is not None:
             login(request, user)
-            return redirect(reverse_lazy("college:teacherview", kwargs={'pk': Teacher.objects.values('id').get(username = username)['id']}))
+            return redirect(reverse_lazy("college:teacherview"))
 
         return apology(request, "Invalid UserName or Password!")
 
@@ -51,7 +51,7 @@ class StudentLogin(View):
 
         if user is not None:
             login(request, user)
-            return redirect(reverse_lazy("college:studentview", kwargs={'pk': Student.objects.values('id').get(username = username)['id']}))
+            return redirect(reverse_lazy("college:studentview"))
 
         return apology(request, "Invalid UserName or Password!")
 
