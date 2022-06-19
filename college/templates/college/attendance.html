@@ -21,9 +21,24 @@
             {% endfor %}
         </tbody>
     </table>
-    <input type="submit">
+    <button id="submit" type="submit">Submit</button>
+    <button id="cancel" type="cancel" onclick="cancelthis();">Cancel</button>
 </form>
+
+
+
+<script>
+    var positive = true;
+    var link = "{% url 'college:teacherview' pk %}";
+    function cancelthis() {
+        positive = false;
+        window.location = link;
+    }
+    document.querySelector("form").addEventListener("submit", function(e) {
+        if (positive == false) {
+            e.preventDefault()
+        }
+    });
     
-
-
+</script>
 {% endblock %}

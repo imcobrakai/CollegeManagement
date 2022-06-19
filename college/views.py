@@ -9,22 +9,22 @@ from django.views import View
 from django.views.generic import ListView, DetailView, UpdateView
 # Create your views here.
 def index(request):
-    if request.method == "GET":
-        form = StudentForm()
-        return render(request, "college/index.html", {"form": form})
-    form = StudentForm(request.POST)
-    form.save()
-    print(form.is_valid())
-    if form.is_valid():
-        print("hello")
-        print(form.cleaned_data.get("prn"))
-        print(form.cleaned_data.get("username"))
-        print(form.cleaned_data.get("password"))
-    for error in form.errors:
-        print(error)
+    # if request.method == "GET":
+        # form = StudentForm()
+    return render(request, "college/index.html")
+    # form = StudentForm(request.POST)
+    # form.save()
+    # print(form.is_valid())
+    # if form.is_valid():
+    #     print("hello")
+    #     print(form.cleaned_data.get("prn"))
+    #     print(form.cleaned_data.get("username"))
+    #     print(form.cleaned_data.get("password"))
+    # for error in form.errors:
+    #     print(error)
     # if form.has_error():
         # print("hello")
-    return render(request, "college/index.html", {"form": form})
+    # return render(request, "college/index.html", {"form": form})
 
 class AdminView(SuperUserRequiredMixin, ListView):
     model = Teacher
@@ -56,10 +56,20 @@ class AdminView(SuperUserRequiredMixin, ListView):
 class StudentView(StudentLoginRequiredMixin, DetailView):
     model = Student
     template_name = "college/student_index.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["student"] = Student.objects.get(username = self.request.user) 
+        return context
 
 class TeacherView(TeacherLoginRequiredMixin, DetailView):
     model = Teacher
     template_name = "college/teacher_index.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["teacher"] = Teacher.objects.get(username = self.request.user) 
+        return context
+    
+    
 
 class AttendanceView(TeacherLoginRequiredMixin, View):
     def get(self, request):
@@ -67,11 +77,13 @@ class AttendanceView(TeacherLoginRequiredMixin, View):
         student_list = Student.objects.filter(branch= branch)
         context = {
             "student_list": student_list,
+            'pk': Teacher.objects.values('id').get(username = request.user)['id'],
         }
         return render(request, "college/attendance.html", context)
     def post(self, request):
         branch = (Teacher.objects.values("branch").get(username = request.user))["branch"]
         student_list = Student.objects.filter(branch= branch)
+        # print("Hello")
         for student in student_list:
             was_present = request.POST.get(student.name)
             if was_present == "yes":
