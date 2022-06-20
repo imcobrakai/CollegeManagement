@@ -110,8 +110,12 @@
 
             
             
-            <main class="container py-5 text-center">
-                {% block main %}{% endblock %}
+            <main class="container py-5">
+                {% block quiz %}
+                <div class="text-center">
+                    {% block main %}{% endblock %}
+                </div>
+                {% endblock quiz %}
             </main>
            
             

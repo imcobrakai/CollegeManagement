@@ -83,7 +83,6 @@ class TeacherLoginRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         except Exception:
             isTeacher = False
         return isTeacher
-
 class RegisterTeacher(SuperUserRequiredMixin, CreateView):
     form_class = TeacherForm
     model = Teacher
