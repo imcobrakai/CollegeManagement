@@ -36,6 +36,11 @@
   </form>
 </div>
 <script>
+  let inputs = document.getElementsByTagName("input");
+        inputs[1].focus();
+        for (let i = 1; i < inputs.length; i++) {
+            inputs[i].classList.add("w-auto")
+        }
   var textarea = document.querySelectorAll("textarea");
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.height = "4rem";

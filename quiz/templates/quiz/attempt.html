@@ -1,0 +1,34 @@
+{% extends 'college/layout.html' %}
+
+{% block quiz %}
+
+<form action="" method="post" style="font-size: 20px;">
+    {% csrf_token %}
+    {% for question, i in questions %}
+    
+
+      <div style="font-weight: bold;" class="mb-3">{{ i|add:1 }}.)&nbsp; {{ question.text|capfirst }} </div>
+      <div class="mb-3">
+        a.) &nbsp;&nbsp;{{ question.option1|capfirst }} 
+        <input type="radio" name="correct{{ i|add:1 }}" value="{{ question.option1 }}" required />
+      </div>
+      <div class="mb-3">
+        b.) &nbsp;&nbsp;{{ question.option2|capfirst }} 
+        <input type="radio" name="correct{{ i|add:1 }}" value="{{ question.option2 }}" required />
+      </div>
+      <div class="mb-3">
+        c.) &nbsp;&nbsp;{{ question.option3|capfirst }} 
+        <input type="radio" name="correct{{ i|add:1 }}" value="{{ question.option3 }}" required />
+      </div>
+      <div class="mb-3">
+        d.) &nbsp;&nbsp;{{ question.option4|capfirst }} 
+        <input type="radio" name="correct{{ i|add:1 }}" value="{{ question.option4 }}" required />
+      </div>
+    <br>
+    {% endfor %}
+    <input type="submit" value="Submit" />
+    <input type="hidden" name="count" value="{{ count }}">
+</form>
+
+
+{% endblock quiz %}

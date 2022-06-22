@@ -1,7 +1,7 @@
 {% extends 'college/layout.html' %}
 
 {% block main %}
-
+    <h2 class="m-5">Create Quiz</h2>
 <form action="" method="post">
     {% csrf_token %}
     <div class="mb-3">
@@ -16,7 +16,10 @@
     <div class="mb-3">
         {{ form.questions }}
         {{ form.errors.questions }}
-        
+    </div>
+    <div class="mb-3">
+        {{ form.valid_until }}
+        {{ form.errors.valid_until }}
     </div>
     <input type="hidden" name="author" value="{{ teacher.id }}">
         <button class="btn btn-primary" type="submit">Add Questions</button>
