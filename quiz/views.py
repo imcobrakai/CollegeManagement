@@ -95,6 +95,7 @@ class AttemptQuiz(StudentLoginRequiredMixin, View):
         context = {
             "questions": zip(questions, count),
             "attempted": attempted,
+            "duration": quiz.duration,
         }
         return render(request, "quiz/attempt.html", context)
     

@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = 'django-insecure-4v2rlkef29b^t_a%w!n#t!_7igdqb33lt3(ogez11%yh-1#^r4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -130,12 +130,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Logs out the user once the browser is closed
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-# Email settings 
-
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = str(os.getenv("EMAIL_HOST_USER"))
-EMAIL_HOST_PASSWORD = str(os.getenv("EMAIL_HOST_PASSWORD"))
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-

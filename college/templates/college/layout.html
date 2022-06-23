@@ -17,11 +17,25 @@
         <title>AKT:
             {% block title %}{% endblock %}
         </title>
+        <style>
+
+            #logo_header{
+                display: block;
+                width: 80px;
+                height: 50px;
+                box-sizing: padding-box;
+                border: 2px solid rgba(0, 0, 0, 0.904);
+                filter: invert(1);
+            }
+
+        </style>
     </head>
     <body>
-         <nav class="bg-light border navbar navbar-expand-md navbar-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/"><span class="blue">A</span><span class="yellow">K</span><span class="orange">T</span> <span class="red">College</span></a>
+         <nav class="bg-dark border navbar navbar-expand-md navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="../../static/college/bg_logo.png" alt="logo" id="logo_header">
+                </a>
                 <button aria-controls="navbar"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
@@ -102,13 +116,6 @@
                 </header>
             {% endfor %}
         {% endif %} 
-        {% comment %} {% if  %}
-            <header>
-                <div class="alert alert-primary mb-0 text-center" role="alert">{{ get_flashed_messages() | join(" ") }}</div>
-            </header>
-        {% endif %} {% endcomment %}
-
-            
             
             <main class="container py-5">
                 {% block quiz %}
@@ -117,7 +124,6 @@
                 </div>
                 {% endblock quiz %}
             </main>
-           
-            
+                       
     </body>
 </html>
