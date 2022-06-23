@@ -1,0 +1,13 @@
+{% extends 'college/layout.html' %} {% block quiz %}
+
+<h3 class="m-5">Available Quizes</h3>
+
+<ul class="list-group ">
+  {% for quiz in quiz_list %}
+  <li class="list-group-item list-group-item-action text-center w-25 center border border-dark">
+    <a class="text-decoration-none" style="font-size: 24px; color: black;" href="{% url 'quiz:attempt' quiz.id%}">{{ quiz.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock quiz %}

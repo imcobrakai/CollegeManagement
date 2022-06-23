@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'college',
     'accounts',
+    'quiz',
 ]
 
 MIDDLEWARE = [
@@ -107,10 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-uk'
 
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Asia/Kolkata'
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
 USE_I18N = True
 
 USE_TZ = True
@@ -129,12 +130,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Logs out the user once the browser is closed
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-# Email settings 
-
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = str(os.getenv("EMAIL_HOST_USER"))
-EMAIL_HOST_PASSWORD = str(os.getenv("EMAIL_HOST_PASSWORD"))
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-

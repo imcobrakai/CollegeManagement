@@ -1,0 +1,69 @@
+{% extends 'college/layout.html' %} {% block quiz %}
+<div>
+  {% for message in messages %}
+  <p>{{ message }}</p>
+  {% endfor %}
+
+  <form action="{% url 'quiz:addquestions' %}" class="text-left" method="post">
+    {% csrf_token %} {% for i in number %}
+    <div class="text-left">
+      <div style="font-weight: bold; font-size: 1.5rem">
+        Question {{ i|add:1}}:
+      </div>
+    </div>
+    <div class="mb-3">{{ form.text }} {{ form.errors.text }}</div>
+    <div class="mb-3">
+      {{form.option1.label}}: {{ form.option1 }} {{ form.errors.option1 }}
+      <input type="radio" name="correct{{ i|add:1 }}" value="optiona{{ i|add:1 }}" required />
+    </div>
+    <div class="mb-3">
+      {{form.option2.label}}: {{ form.option2 }} {{ form.errors.option2 }}
+      <input type="radio" name="correct{{ i|add:1 }}" value="optionb{{ i|add:1 }}" required />
+    </div>
+    <div class="mb-3">
+      {{form.option3.label}}: {{ form.option3 }} {{ form.errors.option3 }}
+      <input type="radio" name="correct{{ i|add:1 }}" value="optionc{{ i|add:1 }}" required />
+    </div>
+    <div class="mb-3">
+      {{form.option4.label}}: {{ form.option4 }} {{ form.errors.option4 }}
+      <input type="radio" name="correct{{ i|add:1 }}" value="optiond{{ i|add:1 }}" required />
+    </div>
+    {% endfor %}
+
+    <input type="submit" value="Submit" />
+    <input type="hidden" name="quiz" value="{{ quiz.id }}" />
+    <input type="hidden" name="count" value="{{ count }}" />
+  </form>
+</div>
+<script>
+  let inputs = document.getElementsByTagName("input");
+        inputs[1].focus();
+        for (let i = 1; i < inputs.length; i++) {
+            inputs[i].classList.add("w-auto")
+        }
+  var textarea = document.querySelectorAll("textarea");
+  for (let i = 0; i < textarea.length; i++) {
+    textarea[i].style.height = "4rem";
+    textarea[i].style.width = "40rem";
+    textarea[i].name = "text" + (i + 1);
+  }
+  var option1 = document.getElementsByName("option1");
+  var len = option1.length
+  for (let i = 0; i < len; i++) {
+    option1[0].name = "optiona" + (i + 1);
+  }
+
+  var option2 = document.getElementsByName("option2");
+  for (let i = 0; i < len; i++) {
+    option2[0].name = "optionb" + (i + 1);
+  }
+  var option3 = document.getElementsByName("option3");
+  for (let i = 0; i < len; i++) {
+    option3[0].name = "optionc" + (i + 1);
+  }
+  var option4 = document.getElementsByName("option4");
+  for (let i = 0; i < len; i++) {
+    option4[0].name = "optiond" + (i + 1);
+  }
+</script>
+{% endblock quiz %}

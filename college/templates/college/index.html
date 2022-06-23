@@ -5,8 +5,40 @@ Home
 
 {% block main %}
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, harum repellendus! Quos ipsam repellendus dignissimos quidem placeat veritatis atque, exercitationem earum, consequatur numquam minus aliquam? Perferendis consectetur provident voluptas aut beatae similique a placeat inventore culpa, laboriosam, dolores recusandae obcaecati sapiente aperiam quo? Repellat reprehenderit sint modi pariatur facilis magni.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, fugit voluptates corporis cum vel a. Fuga beatae quidem facilis pariatur fugiat iste voluptatem delectus qui quasi laudantium officia tenetur explicabo, culpa repellendus perferendis ipsa ut repudiandae, sunt similique nulla maiores? Aliquam, sint accusantium fugit inventore velit, similique distinctio, odit amet soluta fugiat iure porro eaque. Nemo voluptates, et, consequuntur alias iusto enim dignissimos ipsam quos mollitia quidem cupiditate repellat similique quaerat distinctio natus ex officiis facilis cum dicta suscipit? Sequi!</p>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, repellendus aperiam accusantium sapiente expedita laudantium, iste optio dolorem dolores eveniet adipisci doloremque, eligendi nostrum hic sequi pariatur magnam inventore praesentium libero. Iste ad totam dolore. Sunt quae nesciunt fuga commodi ipsa nobis delectus libero! Eaque nemo omnis neque numquam iste cum quae tempora asperiores doloremque. Nisi eligendi vel neque quas at. Nihil nobis qui recusandae, fugit velit soluta similique, ut ipsa quos aliquam, voluptas libero labore laboriosam. Dolorum perferendis earum reprehenderit soluta odit dolore ex corrupti. Deserunt voluptas quisquam explicabo omnis blanditiis reiciendis rerum deleniti repellat fugit, delectus nostrum doloremque?</p>
+<style>
+    
+  .hero_section{
+    min-height: 90vh;
+    background: linear-gradient( rgba(11, 7, 7, 0.679),
+    rgba(29, 20, 20, 0.527)),
+    url("../../static/college/clg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-clip: border-box;
+    background-origin: border-box; 
+    background-attachment: fixed;
+    padding: 3.5rem 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 800;
+    color: aliceblue;
+  }
+</style>
+  <div class="jumbotron hero_section">
+      <h1 class="display-2 bold py-5">AKT College Manager</h1>
+      <p class="display-6 lead bold">Safely record and track your classroom activities</p>
+      <hr class="display-6 my-4 bold">
+      <p>Have a query or need any help? Call the button below.</p>
+      <p class="lead">
+      <span class="btn btn-primary btn rounded">Call Now</span>
+      </p>
+  </div>
+  
+  <ul class="list-group py-5">
+    <li class="list-group-item active" aria-current="true">Notice and Updates</li>
+    <li class="list-group-item">Orientation for new students on 10 August! Help as organize an event as volunteers.</li>
+    <li class="list-group-item">Join the free workshop on meditation next Saturday at 4pm conducted by one of our graduates.</li>
+    <li class="list-group-item">To discontinue any units, please unenroll by 5 August.[2nd Semseter Students]</li>
+    <li class="list-group-item">College Library to remain closed next Sunday.</li>
+    <span class="text-info bg-dark">Previous Notices</span>
+  </ul>
 {% endblock main %}
-</div>

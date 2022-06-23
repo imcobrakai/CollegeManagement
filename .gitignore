@@ -3,3 +3,4 @@ db.sqlite3
 /accounts/__pycache__
 /college/__pycache__
 /collegemanagement/__pycache__
+/quiz/__pycache__

@@ -83,7 +83,6 @@ class TeacherLoginRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         except Exception:
             isTeacher = False
         return isTeacher
-
 class RegisterTeacher(SuperUserRequiredMixin, CreateView):
     form_class = TeacherForm
     model = Teacher
@@ -100,15 +99,15 @@ class RegisterTeacher(SuperUserRequiredMixin, CreateView):
         except Exception:
             return apology(self.request, "Username already exists!")
         x = super().form_valid(form)
-        message = f"""
-        Your Login Credentials for AKT College site are as follows:
-        UserName: {username}
-        Password: {password}
-        You can use these credentials to login to the site.
-        """
-        to = [email]
-        email = EmailMessage("Login Credentials", message, to=to)
-        email.send()
+        # message = f"""
+        # Your Login Credentials for AKT College site are as follows:
+        # UserName: {username}
+        # Password: {password}
+        # You can use these credentials to login to the site.
+        # """
+        # to = [email]
+        # email = EmailMessage("Login Credentials", message, to=to)
+        # email.send()
         return x
 
 
@@ -130,15 +129,15 @@ class RegisterStudent(SuperUserRequiredMixin, CreateView):
             # form.add_error(username, ValidationError)
             return apology(self.request, "Username already exists!")
         x = super().form_valid(form)
-        message = f"""
-        Your Login Credentials for AKT College site are as follows:
-        UserName: {username}
-        Password: {password}
-        You can use these credentials to login to the site.
-        """
-        to = [email]
-        email = EmailMessage("Login Credentials", message, to=to)
-        email.send()
+        # message = f"""
+        # Your Login Credentials for AKT College site are as follows:
+        # UserName: {username}
+        # Password: {password}
+        # You can use these credentials to login to the site.
+        # """
+        # to = [email]
+        # email = EmailMessage("Login Credentials", message, to=to)
+        # email.send()
         return x
 
 class CreateBranch(SuperUserRequiredMixin, CreateView):

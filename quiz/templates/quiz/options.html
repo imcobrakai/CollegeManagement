@@ -1,0 +1,40 @@
+{% extends 'college/layout.html' %}
+
+{% block main %}
+    <h2 class="m-5">Create Quiz</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        {{ form.name }}
+        {{ form.errors.name }}
+    </div>
+    <div class="mb-3">
+        {{ form.duration }}
+        {{ form.errors.duration }}
+        
+    </div>
+    <div class="mb-3">
+        {{ form.questions }}
+        {{ form.errors.questions }}
+    </div>
+    <div class="mb-3">
+        {{ form.valid_until }}
+        {{ form.errors.valid_until }}
+    </div>
+    <input type="hidden" name="author" value="{{ teacher.id }}">
+        <button class="btn btn-primary" type="submit">Add Questions</button>
+    </form>
+
+    <script>
+        let inputs = document.getElementsByTagName("input");
+        inputs[1].focus();
+        for (let i = 1; i < inputs.length; i++) {
+            inputs[i].classList.add("form-control")
+            inputs[i].classList.add("mx-auto")
+            inputs[i].classList.add("w-auto")
+        }
+		inputs[1].placeholder = "Name";
+		inputs[2].placeholder = "Duration (min)";
+		inputs[3].placeholder = "Number of Questions";
+    </script>
+{% endblock main %}

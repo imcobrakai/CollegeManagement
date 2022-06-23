@@ -9,22 +9,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView, UpdateView
 # Create your views here.
 def index(request):
-    # if request.method == "GET":
-        # form = StudentForm()
     return render(request, "college/index.html")
-    # form = StudentForm(request.POST)
-    # form.save()
-    # print(form.is_valid())
-    # if form.is_valid():
-    #     print("hello")
-    #     print(form.cleaned_data.get("prn"))
-    #     print(form.cleaned_data.get("username"))
-    #     print(form.cleaned_data.get("password"))
-    # for error in form.errors:
-    #     print(error)
-    # if form.has_error():
-        # print("hello")
-    # return render(request, "college/index.html", {"form": form})
 
 class AdminView(SuperUserRequiredMixin, ListView):
     model = Teacher
@@ -54,7 +39,7 @@ class AdminView(SuperUserRequiredMixin, ListView):
         return context
 
 class StudentView(StudentLoginRequiredMixin, DetailView):
-    
+        
     def get(self, request):
         context = dict()
         context["student"] = Student.objects.get(username = self.request.user) 

@@ -1,9 +1,10 @@
 {% extends "college/layout.html" %}
-{% block title %}Admin{% endblock %}
+{% block title %}Student Detail{% endblock %}
 {% load operations %}
 {% block main %}
-<h2>Student Detail</h2>
-      <table class="table table-bordered border-dark">
+
+  <h2>Student Detail</h2>
+  <table class="table table-bordered border-dark">
         <tr>
           <th>Name</th>
           <td>{{ student.name }}</td>
@@ -29,4 +30,21 @@
           <td>{{ student.branch }}</td>
         </tr>
       </table>
+      <div class="tags my-5">
+        <div class="">
+          <a href="{% url 'quiz:available' %}">Take Quizes</a>
+        </div>
+        <script>
+          let anchors = document.querySelectorAll(".tags a")
+          console.log(anchors)
+          for (let i = 0; i < anchors.length; i++) {
+              anchors[i].classList.add("px-2")
+              anchors[i].classList.add("text-decoration-none")
+              anchors[i].classList.add("text-decoration-none")
+              anchors[i].classList.add("text-dark")
+              anchors[i].classList.add("border")
+              anchors[i].classList.add("rounded")
+              anchors[i].classList.add("border-dark")
+          }
+      </script>
 {% endblock %}
