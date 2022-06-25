@@ -1,0 +1,35 @@
+{% extends 'college/layout.html' %}
+
+{% block title %}
+Results
+{% endblock title %}
+
+{% block quiz %}
+
+<h2 class="mx-5 text-center">Quiz Result</h2>
+{% if results %}
+
+<div class="container m-5">
+    <div class="row">
+        <div class="col-6 col-sm-3 border border-dark py-2 text-center " style="font-size: 20px; font-weight:bold;">Student
+        </div>
+        <div class="col-6 col-sm-3 border border-dark py-2 text-center " style="font-size: 20px; font-weight:bold;">Score</div>
+{% for result in results %}
+
+        <div class="w-100 "></div>
+        
+        <div class="col-6 col-sm-3 border border-dark py-2 text-center" style="font-size: 20px;">{{ result.student_name.username|capfirst }}
+        </div>
+        <div class="col-6 col-sm-3 border border-dark py-2 text-center " style="font-size: 20px;">{{ result.marks }} / {{ count }}</div>
+        
+        
+        {% endfor %}
+    </div>
+    </div>
+    {% else %}
+    <p style="font-size: 30px;" class="text-center my-5">
+        No one has attempted the Quiz yet!
+    </p>
+    {% endif %}
+
+{% endblock quiz %}

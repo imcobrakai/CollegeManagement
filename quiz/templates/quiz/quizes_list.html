@@ -1,0 +1,45 @@
+{% extends 'college/layout.html' %}
+
+{% block title %}Quizes{% endblock title %}
+
+{% block quiz %}
+<h2 class="mx-5 text-center">Available Quizes</h2>
+<div class="tags m-5">
+    <div class="">
+      <a style="font-size: 20px; color:blue;" href="{% url 'quiz:createquiz' %}">Create Quiz</a>
+    </div>
+</div>
+{% if quizes %}
+
+{% for quiz in quizes %}
+
+<div class="container m-5">
+    <div class="row">
+        <div class="w-100 "></div>
+        
+        <div class="col-6 col-sm-3 border border-dark py-2 text-center" style="font-size: 20px;">{{ quiz.name|capfirst }}
+        </div>
+        <div class="col-6 col-sm-3 border border-dark py-2 text-center " style="font-size: 20px;"><a class="text-decoration-none" href="{% url 'quiz:results' quiz.id %}">View Results</a></div>
+        
+    </div>
+    
+    {% endfor %}
+    {% else %}
+    <p style="font-size:30px;" class="mx-5">
+        There are no quizes to show!
+    </p>
+    {% endif %}
+
+<script>
+    let anchors = document.querySelectorAll(".tags a")
+    console.log(anchors)
+    for (let i = 0; i < anchors.length; i++) {
+        anchors[i].classList.add("px-2")
+        anchors[i].classList.add("text-decoration-none")
+        anchors[i].classList.add("border")
+        anchors[i].classList.add("rounded")
+        anchors[i].classList.add("border-dark")
+    }
+</script>
+
+{% endblock quiz %}

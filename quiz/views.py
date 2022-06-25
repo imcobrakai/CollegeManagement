@@ -112,8 +112,48 @@ class AttemptQuiz(StudentLoginRequiredMixin, View):
                 score += 1
         student = Student.objects.get(username= request.user)
         QuizResult.objects.create(quiz=quiz, student_name=student, marks = score)
+        
+        return redirect(reverse_lazy("quiz:result", kwargs={"id":id}))
+
+class QuizesList(TeacherLoginRequiredMixin, View):
+    def get(self, request):
+        try:
+            quizes = Quiz.objects.filter(author=Teacher.objects.get(username=request.user))
+        except Exception:
+            return apology(request, "Quiz does not exist")
         context = {
-            "score": score,
-            "total": len(questions),
+            "quizes": quizes 
+        }
+        return render(request, "quiz/quizes_list.html", context)
+
+class QuizResults(TeacherLoginRequiredMixin, View):
+    def get(self, request, id):
+        
+        try:
+            quiz = Quiz.objects.get(id=id)
+            count = Question.objects.filter(quiz=quiz).count()
+            if quiz.author.username != str(request.user):
+                return apology(request, "Invalid Quiz")
+            results = QuizResult.objects.filter(quiz=quiz)
+        except Exception:
+            return apology(request, "Invalid Quiz")
+        
+        context = {
+            "results": results,
+            "count": count,
+        }
+        return render(request, "quiz/result_list.html", context)
+
+class Result(StudentLoginRequiredMixin ,View):
+    def get(self, request, id):
+        try: 
+            quiz = Quiz.objects.get(id=id)
+            result = QuizResult.objects.get(quiz=quiz, student_name=Student.objects.get(username=request.user))
+            count = Question.objects.filter(quiz=quiz).count()
+        except Exception:
+            return apology(request, "Result Unavailable")
+        context = {
+            "score": result.marks,
+            "total": count,
         }
         return render(request, "quiz/result.html", context)
