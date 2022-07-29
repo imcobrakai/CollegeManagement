@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web gunicorn authapi.wsgi --log-file -
+web gunicorn collegemanagement.wsgi --log-file -
