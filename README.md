@@ -1,5 +1,5 @@
-# CS50 Final Project: College Management Project
-### Video Demo:  <URL HERE>
+#College Management Project
+### Website Link: https://django-college-management.herokuapp.com/
 ### Description: 
 
 <br>
