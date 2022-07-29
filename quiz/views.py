@@ -1,6 +1,4 @@
 from datetime import date
-from multiprocessing import context
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from django.urls import reverse_lazy
@@ -24,12 +22,7 @@ class CreateQuiz(TeacherLoginRequiredMixin, View):
 
     def post(self, request):
         quizform = QuizForm(request.POST)
-        # quizform.form_valid(quizform)
-        # print(dir(quizform))
-        print(request.POST)
-        print(quizform.errors)
         if not quizform.is_valid():
-            print("hello")
             content = {
                 "form": quizform,
             }

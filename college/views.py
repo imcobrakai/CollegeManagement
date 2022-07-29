@@ -2,7 +2,6 @@ from .models import Teacher, Student, Branch
 from accounts.views import StudentLoginRequiredMixin, SuperUserRequiredMixin, TeacherLoginRequiredMixin
 from college.helpers import apology
 from django.contrib.auth.models import User
-from accounts.forms import TeacherForm, StudentForm
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
@@ -63,7 +62,6 @@ class AttendanceView(TeacherLoginRequiredMixin, View):
     def post(self, request):
         branch = (Teacher.objects.values("branch").get(username = request.user))["branch"]
         student_list = Student.objects.filter(branch= branch)
-        # print("Hello")
         for student in student_list:
             was_present = request.POST.get(student.name)
             if was_present == "yes":

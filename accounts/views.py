@@ -92,8 +92,6 @@ class RegisterTeacher(SuperUserRequiredMixin, CreateView):
         username = form.cleaned_data.get("username")
         password = form.data.get("password")
         email = form.cleaned_data.get("email")
-        # print(username)
-        # print(password)
         try:
             User.objects.create_user(username = username, password = password)
         except Exception:
@@ -121,12 +119,9 @@ class RegisterStudent(SuperUserRequiredMixin, CreateView):
         username = form.cleaned_data.get("username")
         password = form.data.get("password")
         email = form.cleaned_data.get("email")
-        # print(username)
-        # print(password)
         try:
             User.objects.create_user(username = username, password = password)
         except Exception:
-            # form.add_error(username, ValidationError)
             return apology(self.request, "Username already exists!")
         x = super().form_valid(form)
         # message = f"""
@@ -156,6 +151,5 @@ class SuperUserLogin(View):
         user = authenticate(request, username=username, password=password)
         if user is None or not user.is_superuser:
             return apology(request, "Invalid Username or Password")
-        # print(user)
         login(request, user)
         return redirect(reverse_lazy("college:adminview"))
