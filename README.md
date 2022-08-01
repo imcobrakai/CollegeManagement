@@ -1,5 +1,5 @@
-# CS50 Final Project: College Management Project
-### Video Demo:  <URL HERE>
+#College Management Project
+### Website Link: https://django-college-management.herokuapp.com/
 ### Description: 
 
 <br>
@@ -10,7 +10,7 @@
 
 Clone this repository using the following command
 
-`git clone {repolink}`
+`git clone https://github.com/kailashchoudhary11/CollegeManagement.git`
 
 #### **Step 2:**
 
